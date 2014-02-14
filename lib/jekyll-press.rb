@@ -110,19 +110,13 @@ module Jekyll
             else
               output_css(dest_path, File.read(path))
             end
-          else
-            output_js(dest_path, File.read(path))
+          when '.json'
+            if dest_path =~ /.min.json$/
+              copy_file(path, dest_path)
+            else
+              output_json(dest_path, File.read(path))
+            end
           end
-        when '.json'
-          if dest_path =~ /.min.json$/
-            copy_file(path, dest_path)
-          else
-            output_json(dest_path, File.read(path))
-          end
-        when '.css'
-          if dest_path =~ /.min.css$/
-            copy_file(path, dest_path)
-        end
       else
         copy_file(path, dest_path)
       end
