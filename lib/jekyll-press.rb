@@ -116,7 +116,9 @@ module Jekyll
             else
               output_json(dest_path, File.read(path))
             end
-          end
+          else
+            copy_file(path, dest_path)
+        end
       else
         copy_file(path, dest_path)
       end
